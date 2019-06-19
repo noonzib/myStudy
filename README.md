@@ -11,3 +11,5 @@ Study list
 -django
 
 -java
+
+-python 
