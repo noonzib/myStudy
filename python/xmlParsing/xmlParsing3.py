@@ -53,6 +53,6 @@ def changeChooseText(idx):
 
 # findChild(root, cnt)
 # findAll()
-idx = 2
 # changeAllText()
+idx = 2
 changeChooseText(idx)
