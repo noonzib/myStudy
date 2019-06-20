@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<data>
+    <country name="Liechtenstein">
+        <rank>1</rank>
+        <year>2008</year>
+        <gdppc name="noonzib">
+            <rank>9999</rank>
+        </gdppc>
+        <neighbor name="Austria" direction="E"/>
+        <neighbor name="Switzerland" direction="W"/>
+    </country>
+    <country name="Singapore">
+        <rank>4</rank>
+        <year>2011</year>
+        <gdppc>59900</gdppc>
+        <neighbor name="Malaysia" direction="N"/>
+    </country>
+    <country name="Panama">
+        <rank>68</rank>
+        <year>2011</year>
+        <gdppc>13600</gdppc>
+        <neighbor name="Costa Rica" direction="W"/>
+        <neighbor name="Colombia" direction="E"/>
+    </country>
+    <city name="NewYork"> 
+        <rank>1</rank>
+        <year>2015</year>
+        <neighbor name="boston" time="1993"/>
+    </city>
+    <city name="Boston"> 
+        <rank>4</rank> 
+        <year>2015</year> 
+        <neighbor name="newyork" time="1992"/> 
+    </city>
+</data>
