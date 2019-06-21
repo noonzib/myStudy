@@ -85,9 +85,9 @@ def changeText2(ftext,ttext):
 	pass
 
 
-# findChild(root2, cnt)
+findChild(root2, cnt)
 # findAll(root2)
-printText(root2,cnt)
+#printText(root2,cnt)
 
 
 ########################Replace text###########################
