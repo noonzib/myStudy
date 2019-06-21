@@ -22,7 +22,7 @@ def findChild(parent, cnt):
 	cnt += 1 
 	for child in parent:
 		if child != "":
-			print "\t|"*cnt+'-->',child.tag, child.attrib, child.text#, "" if child.text.isspace() else child.text	
+			print "\t"*cnt+'L',child.tag, child.attrib, child.text#, "" if child.text.isspace() else child.text	
 			findChild(child, cnt)
 		else:
 			break
@@ -34,9 +34,12 @@ def findAll(parent):
 	pass
 
 def printText(parent,cnt):
+	if cnt == 0:
+		print parent.text
+		pass
 	cnt += 1
 	for child in parent:
-		print "\t|"*cnt+'-->',child.text
+		print "\t"*cnt+'L',child.text
 		printText(child,cnt)
 		pass
 	pass
@@ -82,9 +85,9 @@ def changeText2(ftext,ttext):
 	pass
 
 
-findChild(root2, cnt)
+#findChild(root2, cnt)
 # findAll(root2)
-# printText(root2,cnt)
+printText(root2,cnt)
 
 
 ########################Replace text###########################
