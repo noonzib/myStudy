@@ -8,4 +8,3 @@ public class prob1001 {
         System.out.print(n1-n2);
     }
 }
-
