@@ -10,12 +10,8 @@
     </country>
     <country name="Singapore">
         <rank>4</rank>
-        <year updated="yes">7777</year>
-        <gdppc>
-            59900
-            <bold>222</bold>
-            4444
-        </gdppc>
+        <year updated="yes">8888</year>
+        <gdppc>59900<bold>222</bold>4444</gdppc>
         <neighbor direction="N" name="Malaysia" />
     </country>
     <country name="Panama">
