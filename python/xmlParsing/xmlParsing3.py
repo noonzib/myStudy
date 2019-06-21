@@ -1,23 +1,23 @@
 import xml.etree.ElementTree as ET
 from lxml import etree
 
+tree = ET.parse('./data.xml')
+root = tree.getroot()
+
 parser = etree.XMLParser(remove_blank_text=True)
 with open('data.xml', 'r') as file:
 	data = file.read()
 elem = etree.XML(data, parser = parser)
-root = ET.fromstring(etree.tostring(elem))
+root2 = ET.fromstring(etree.tostring(elem))
 
 # print data
 # print etree.tostring(elem)
-
-# tree = ET.parse('./data.xml')
-# root = tree.getroot()
 
 cnt = 0
 
 def findChild(parent, cnt):
 	if cnt == 0:
-		print root.tag, root.attrib
+		print parent.tag, parent.attrib
 		pass
 	cnt += 1 
 	for child in parent:
@@ -28,9 +28,17 @@ def findChild(parent, cnt):
 			break
 	pass
 
-def findAll():
-	for child in root.iter('*'):
+def findAll(parent):
+	for child in parent.iter('*'):
 		print child.tag,child.text
+	pass
+
+def printText(parent,cnt):
+	cnt += 1
+	for child in parent:
+		print "\t|"*cnt+'-->',child.text
+		printText(child,cnt)
+		pass
 	pass
 
 def changeAllText(ftext, ttext):
@@ -65,26 +73,30 @@ def changeChooseText(ftext,ttext,idx):
 	print "Can't find the text"
 	pass
 
-def printText(parent,cnt):
-	cnt += 1
-	for child in parent:
-		print "\t|"*cnt+'-->',child.text
-		printText(child,cnt)
-		pass
+def changeText2(ftext,ttext):
+	with open('data.xml', 'r') as file:
+		filedata = file.read()
+	filedata.replace(ftext, ttext)
+	with open('file.txt', 'w') as file:
+		file.write(filedata)
 	pass
 
-#findChild(root, cnt)
-#findAll()
-#printText(root,cnt)
+
+findChild(root2, cnt)
+# findAll(root2)
+# printText(root2,cnt)
+
+
 ########################Replace text###########################
 idx = 2
 ftext = "7777"
 ttext = "8888"
-#changeAllText(ftext, ttext)
-#changeChooseText(ftext,ttext,idx)
+# changeAllText(ftext, ttext)
+# changeChooseText(ftext,ttext,idx)
+# changeText2(ftext, ttext)
 ###############################################################
 
-print root[1][2].text[5]
+# print root[1][2].text[5]
 
 
 
