@@ -9,7 +9,7 @@ public class Study01 {
     //라벨 변수 선언
     static JLabel lbl, lbl2, imgLbl, imgLbl2;
     static ImageIcon bsImg, rsImg;
-
+    static JButton btn1, btn2;
     //슬라임과 인간 객체 생성
     static BlueSlime bs1 = new BlueSlime("슬라삐");
     static RedSlime rs1 = new RedSlime("슬라디");
@@ -35,8 +35,8 @@ public class Study01 {
         //[end] 프레임 설정
 
         //[start] 버튼 설정
-        JButton btn1 = new JButton(bs1.name);
-        JButton btn2 = new JButton(rs1.name);
+        btn1 = new JButton(bs1.name);
+        btn2 = new JButton(rs1.name);
         btn1.setBounds(30,170,122,30);
         btn2.setBounds(182,170,122,30);
         frm.getContentPane().add(btn1);
@@ -92,17 +92,13 @@ public class Study01 {
     }
     public static void battle(Slime s){
         //슬라임이 살아있을때만 공격
-        if(s.hp < 1){
-            lbl.setText(s.name + "는 이미 죽어있다\n");
-        } else{
-            h.attack(s);
-            if(s instanceof BlueSlime){
-                ((BlueSlime) s).heal(s);
-            }else{
-                s.attack(h);
-            }
-        }
+        h.attack(s);
 
+        if(s instanceof BlueSlime){
+            ((BlueSlime) s).heal(s);
+        }else{
+            s.attack(h);
+        }
         // 슬라임이 모두 죽으면 게임 클리어
         if(bs1.hp < 1 && rs1.hp < 1){
             JOptionPane.showMessageDialog(lbl2, "Game Clear!");

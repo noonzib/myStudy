@@ -3,6 +3,7 @@
 package game.slime;
 
 import javax.swing.*;
+import java.util.Timer;
 import java.util.TimerTask;
 
 class Human {
@@ -21,7 +22,7 @@ class Human {
         if(s == Study01.bs1){
             Study01.imgLbl.setIcon(bsImg_fire);
         } else {
-            Study01.imgLbl.setIcon(rsImg_fire);
+            Study01.imgLbl2.setIcon(rsImg_fire);
         }
 
         Timer timer1 = new Timer();
@@ -30,17 +31,20 @@ class Human {
             public void run() {
                 Study01.imgLbl.setIcon(Study01.bsImg);
                 Study01.imgLbl2.setIcon(Study01.rsImg);
+                timer1.cancel();
             }
         };
 
-        timer1.sche
-
-
-
+        timer1.schedule(task1,500);
 
         s.hp = s.hp - 30;
 
         if (s.hp < 1) {
+            if(s == Study01.bs1){
+                Study01.btn1.setEnabled(false);
+            } else {
+                Study01.btn2.setEnabled(false);
+            }
             Study01.lbl.setText(s.name + "는 사망했다\n");
             Study01.lbl2.setText("");
         } else {
