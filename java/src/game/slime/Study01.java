@@ -7,7 +7,8 @@ import java.util.Enumeration;
 
 public class Study01 {
     //라벨 변수 선언
-    static JLabel lbl, lbl2;
+    static JLabel lbl, lbl2, imgLbl, imgLbl2;
+    static ImageIcon bsImg, rsImg;
 
     //슬라임과 인간 객체 생성
     static BlueSlime bs1 = new BlueSlime("슬라삐");
@@ -57,8 +58,8 @@ public class Study01 {
         frm.getContentPane().add(lbl2);
 
         // [start]이미지라벨 생성
-        JLabel imgLbl = new JLabel();
-        ImageIcon bsImg = new ImageIcon(Study01.class.getResource("/game/slime/img/slime(blue).png"));
+        imgLbl = new JLabel();
+        bsImg = new ImageIcon(Study01.class.getResource("/game/slime/img/slime(blue).png"));
         imgLbl.setIcon(bsImg);
         imgLbl.setBounds(30,30,122,130);
         imgLbl.setHorizontalAlignment(JLabel.CENTER);
@@ -66,8 +67,8 @@ public class Study01 {
         // [end]
 
         // [start] 이미지 라벨2 생성
-        JLabel imgLbl2 = new JLabel();
-        ImageIcon rsImg = new ImageIcon(Study01.class.getResource("/game/slime/img/slime(red).png"));
+        imgLbl2 = new JLabel();
+        rsImg = new ImageIcon(Study01.class.getResource("/game/slime/img/slime(red).png"));
         imgLbl2.setIcon(rsImg);
         imgLbl2.setBounds(182,30,122,130);
         imgLbl2.setHorizontalAlignment(JLabel.CENTER);
