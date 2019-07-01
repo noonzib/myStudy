@@ -8,8 +8,10 @@ Study list
 
 -nodejs
 
--django
-
 -java
 
 -python 
+
+-blockchain
+
+-AI
