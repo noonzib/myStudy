@@ -1,0 +1,13 @@
+*{margin: 0;padding: 0;text-decoration: none;font-size: 25px;}
+
+.content{
+    position: absolute;
+    text-align: center;
+    width: 400px;
+    height: 100px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+.content span{color: rgb(112, 241, 129);}
+.content span:hover{border-bottom: 1px solid rgb(112, 241, 129);}
