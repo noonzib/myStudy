@@ -3,7 +3,8 @@
     color: rgb(112, 241, 129);
     font-size: 16px;
     border: none;
-    font-size: 25px
+    font-size: 25px;
+    width: 100px;
 }
   
 .dropdown {

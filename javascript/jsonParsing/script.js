@@ -1,23 +1,9 @@
-var data = 
-{
-    "toa1": [
-        "a1.html"
-    ],
-    "toa2": [
-        "a2.html"
-    ],
-    "toa3": [
-        "a3.html"
-    ],
-    "toli": [
-        "list.html"
-    ]
-};
-function getIdName(id){
-    var thisId=id;
-    link(thisId);
-}
+var data = '{"toa1": "a1.html","toa2": "a2.html","toa3": "a3.html","toli": "list.html"}';
 function link(id){
-    var link = JSON.parse(data).thisId;
-    location.href = link;
-}
+    obj = JSON.parse(data);
+    for(idName in obj){
+        if(id == idName){
+            location.href = obj[idName];
+        }
+    }
+}   
