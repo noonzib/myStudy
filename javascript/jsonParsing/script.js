@@ -17,4 +17,4 @@ function link(id, index){
             location.href = obj[idName][index];
         }
     }
-}   
+}
