@@ -3,10 +3,8 @@ import json
 from time import time
 from urllib.parse import urlparse
 from uuid import uuid4
-
 import requests
 from flask import Flask, jsonify, request
-
 
 class Blockchain:
     def __init__(self):
@@ -19,16 +17,13 @@ class Blockchain:
 
     def register_node(self, address):
         """
-        Add a new node to the list of nodes
-
-        :param address: Address of node. Eg. 'http://192.168.0.5:5000'
+        새로운 노드 생성
+        :param address: Address of node. ex)'http://127.0.0.1:5000'
         """
-
         parsed_url = urlparse(address)
         if parsed_url.netloc:
             self.nodes.add(parsed_url.netloc)
         elif parsed_url.path:
-            # Accepts an URL without scheme like '192.168.0.5:5000'.
             self.nodes.add(parsed_url.path)
         else:
             raise ValueError('Invalid URL')
@@ -36,7 +31,7 @@ class Blockchain:
 
     def valid_chain(self, chain):
         """
-        Determine if a given blockchain is valid
+        체인이 유효한지 검사
 
         :param chain: A blockchain
         :return: True if valid, False if not
@@ -66,19 +61,15 @@ class Blockchain:
 
     def resolve_conflicts(self):
         """
-        This is our consensus algorithm, it resolves conflicts
-        by replacing our chain with the longest one in the network.
+        체인을 네트워크에서 가장 긴 체인으로 교체
 
         :return: True if our chain was replaced, False if not
         """
 
         neighbours = self.nodes
         new_chain = None
-
-        # We're only looking for chains longer than ours
         max_length = len(self.chain)
 
-        # Grab and verify the chains from all the nodes in our network
         for node in neighbours:
             response = requests.get(f'http://{node}/chain')
 
@@ -100,11 +91,11 @@ class Blockchain:
 
     def new_block(self, proof, previous_hash):
         """
-        Create a new Block in the Blockchain
+        블록체인에 새로운 블록 생성
 
-        :param proof: The proof given by the Proof of Work algorithm
-        :param previous_hash: Hash of previous Block
-        :return: New Block
+        :param proof: POW 알고리즘에 의해 제공된 값
+        :param previous_hash: 이전 블록의 해쉬값
+        :return: 새로운 블록
         """
 
         block = {
@@ -114,8 +105,7 @@ class Blockchain:
             'proof': proof,
             'previous_hash': previous_hash or self.hash(self.chain[-1]),
         }
-
-        # Reset the current list of transactions
+        # 거래내역 초기화
         self.current_transactions = []
 
         self.chain.append(block)
@@ -123,12 +113,12 @@ class Blockchain:
 
     def new_transaction(self, sender, recipient, amount):
         """
-        Creates a new transaction to go into the next mined Block
+        새로운 블록의 거래 내역
 
-        :param sender: Address of the Sender
-        :param recipient: Address of the Recipient
+        :param sender: Sender의 주소
+        :param recipient: Recipient의 주소
         :param amount: Amount
-        :return: The index of the Block that will hold this transaction
+        :return: 이 거래를 포함한 블록의 index값
         """
         self.current_transactions.append({
             'sender': sender,
@@ -150,17 +140,15 @@ class Blockchain:
         :param block: Block
         """
 
-        # We must make sure that the Dictionary is Ordered, or we'll have inconsistent hashes
         block_string = json.dumps(block, sort_keys=True).encode()
         return hashlib.sha256(block_string).hexdigest()
 
     def proof_of_work(self, last_block):
         """
         Simple Proof of Work Algorithm:
+        - 앞에서 0이 4개가 나오는 hash(pp')을 만족시키는 p'을 찾는다. 
+        - p는 이전블록의 proof, p'는 새로운 블록의 proof
 
-         - Find a number p' such that hash(pp') contains leading 4 zeroes
-         - Where p is the previous proof, and p' is the new proof
-         
         :param last_block: <dict> last Block
         :return: <int>
         """
@@ -177,11 +165,11 @@ class Blockchain:
     @staticmethod
     def valid_proof(last_proof, proof, last_hash):
         """
-        Validates the Proof
+        증명 알고리즘
 
-        :param last_proof: <int> Previous Proof
-        :param proof: <int> Current Proof
-        :param last_hash: <str> The hash of the Previous Block
+        :param last_proof: <int> 이전블록의 proog값
+        :param proof: <int> 현재 블록의 proof값
+        :param last_hash: <str> 이전블록의 해쉬값
         :return: <bool> True if correct, False if not.
 
         """
@@ -203,19 +191,16 @@ blockchain = Blockchain()
 
 @app.route('/mine', methods=['GET'])
 def mine():
-    # We run the proof of work algorithm to get the next proof...
+    # 다음 블록의 proof값을 얻어내기 위해 POw 알고리즘 수행
     last_block = blockchain.last_block
     proof = blockchain.proof_of_work(last_block)
 
-    # We must receive a reward for finding the proof.
-    # The sender is "0" to signify that this node has mined a new coin.
+    # 채굴에 성공하면 보상을 준다.
     blockchain.new_transaction(
         sender="0",
         recipient=node_identifier,
         amount=1,
     )
-
-    # Forge the new Block by adding it to the chain
     previous_hash = blockchain.hash(last_block)
     block = blockchain.new_block(proof, previous_hash)
 
@@ -233,12 +218,12 @@ def mine():
 def new_transaction():
     values = request.get_json()
 
-    # Check that the required fields are in the POST'ed data
+    # POST데이터 확인 
     required = ['sender', 'recipient', 'amount']
     if not all(k in values for k in required):
         return 'Missing values', 400
 
-    # Create a new Transaction
+    # 새로운 블록 생성 
     index = blockchain.new_transaction(values['sender'], values['recipient'], values['amount'])
 
     response = {'message': f'Transaction will be added to Block {index}'}
