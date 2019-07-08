@@ -22,12 +22,12 @@ def findChild(parent, cnt):
 	cnt += 1 
 	for child in parent:
 		if child != "":
-			print "\t"*cnt+'L',child.tag, child.attrib, child.text#, "" if child.text.isspace() else child.text	
+			print "\t"*cnt+'L',child.tag, child.attrib, child.text
 			findChild(child, cnt)
 		else:
 			break
 	pass
-
+	
 def findAll(parent):
 	for child in parent.iter('*'):
 		print child.tag,child.text
