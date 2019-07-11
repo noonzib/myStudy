@@ -1,5 +1,5 @@
-import xml.etree.ElementTree as ET
 from lxml import etree
+import xml.etree.ElementTree as ET
 
 tree = ET.parse('./data.xml')
 root = tree.getroot()
@@ -17,12 +17,12 @@ cnt = 0
 
 def findChild(parent, cnt):
 	if cnt == 0:
-		print parent.tag, parent.attrib
+		print (parent.tag, parent.attrib)
 		pass
 	cnt += 1 
 	for child in parent:
 		if child != "":
-			print "\t"*cnt+'L',child.tag, child.attrib, child.text
+			print ("\t"*cnt+'L',child.tag, child.attrib, child.text)
 			findChild(child, cnt)
 		else:
 			break
@@ -30,16 +30,16 @@ def findChild(parent, cnt):
 	
 def findAll(parent):
 	for child in parent.iter('*'):
-		print child.tag,child.text
+		print (child.tag,child.text)
 	pass
 
 def printText(parent,cnt):
 	if cnt == 0:
-		print parent.text
+		print (parent.text)
 		pass
 	cnt += 1
 	for child in parent:
-		print "\t"*cnt+'L',child.text
+		print ("\t"*cnt+'L',child.text)
 		printText(child,cnt)
 		pass
 	pass
@@ -49,16 +49,16 @@ def changeAllText(ftext, ttext):
 	for child in root.iter('*'):
 		if child.text == ftext:
 			child.text = ttext
-			print child.text
+			print (child.text)
 			child.set('updated', 'yes')
-			print "changed the text"
+			print ("changed the text")
 			token = 1
 			pass
 	if token != 0:
 		tree.write('data.xml')
 		pass
 	else:
-		print "Can't find the text"
+		print ("Can't find the text")
 	pass
 
 def changeChooseText(ftext,ttext,idx): 
@@ -68,12 +68,12 @@ def changeChooseText(ftext,ttext,idx):
 			imsi+=1
 			if imsi==idx:
 				child.text = ttext
-				print child.text
+				print (child.text)
 				child.set('updated', 'yes')
 				tree.write('data.xml')
-				print "changed the text"
+				print ("changed the text")
 				return
-	print "Can't find the text"
+	print ("Can't find the text")
 	pass
 
 def changeText2(ftext,ttext):
