@@ -15,14 +15,14 @@
 > My editor
 
 1. VScode
-* Auto Rename Tag
-* Beautify
-* Bracket PairColorrizer
-* Clock in status bar
-* DeBugger for Chrome
-* **Dracula Offical**
-* Polacode
-* **Python**
-* vscode-icons
-* vscode-python-docstring
-* Gitlens
+  * Auto Rename Tag
+  * Beautify
+  * Bracket PairColorrizer
+  * Clock in status bar
+  * DeBugger for Chrome
+  * **Dracula Offical**
+  * Polacode
+  * **Python**
+  * vscode-icons
+  * vscode-python-docstring
+  * Gitlens
