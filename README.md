@@ -14,4 +14,14 @@
 
 > My editor
 
-vscode
+1. VScode
+* Auto Rename Tag
+* Beautify
+* Bracket PairColorrizer
+* Clock in status bar
+* DeBugger for Chrome
+* **Dracula Offical**
+* Polacode
+* **Python**
+* vscode-icons
+* vscode-python-docstring
