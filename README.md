@@ -4,21 +4,11 @@
 
 꾸준히 공부하자
 
-Studied list
+> Studied list
 * nodejs
 * javascript
 * java
 * python
 * blockchain
 * AI
--nodejs
 
--javascript
-
--java
-
--python 
-
--blockchain
-
--AI
