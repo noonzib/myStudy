@@ -12,4 +12,6 @@
 * blockchain
 * AI
 
->
+> My editor
+
+vscode
