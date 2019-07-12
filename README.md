@@ -25,3 +25,4 @@
 * **Python**
 * vscode-icons
 * vscode-python-docstring
+* Gitlens
